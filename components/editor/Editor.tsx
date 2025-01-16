@@ -1,15 +1,24 @@
 "use client";
 
-import MonacoEditor, { Monaco } from "@monaco-editor/react";
+import { LANGUAGE_CONFIG } from "@/lib/constants";
+import { useCodeEditorStore } from "@/lib/store";
+import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "../ui/resizable";
-import { useCodeEditorStore } from "@/lib/store";
-import { LANGUAGE_CONFIG } from "@/lib/constants";
+
+import type { Monaco } from "@monaco-editor/react";
+
+import EditorLoadingSkeleton from "./EditorLoadingSkeleton";
 import Output from "./Output";
+
+const MonacoEditor = dynamic(() => import("@monaco-editor/react"), {
+  loading: () => <EditorLoadingSkeleton />,
+  ssr: false,
+});
 
 function Editor() {
   const { editor, setEditor, language } = useCodeEditorStore();
@@ -39,7 +48,7 @@ function Editor() {
       <ResizablePanel defaultSize={50}>
         <div className="h-full ">
           <MonacoEditor
-            height="100vh"
+            height="80vh"
             language={language}
             defaultValue="// Write code here"
             theme="vs-dark" // by default, TODO add option to modify this

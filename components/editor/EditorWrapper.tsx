@@ -1,8 +1,8 @@
 "use client";
 
-import LanguageSelector from "./LanguageSelector";
-import Editor from "./Editor";
 import { ThemeSwitcher } from "../ThemeSwitcher";
+import Editor from "./Editor";
+import LanguageSelector from "./LanguageSelector";
 
 import RunCode from "./RunCode";
 
