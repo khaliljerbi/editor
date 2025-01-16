@@ -20,8 +20,14 @@ const MonacoEditor = dynamic(() => import("@monaco-editor/react"), {
   ssr: false,
 });
 
+const THEME: Record<string, string> = {
+  light: "light",
+  dark: "vs-dark",
+};
+
 function Editor() {
   const { editor, setEditor, language } = useCodeEditorStore();
+  const theme = localStorage.getItem("theme") || "dark";
 
   useEffect(() => {
     if (editor) {
@@ -51,7 +57,7 @@ function Editor() {
             height="80vh"
             language={language}
             defaultValue="// Write code here"
-            theme="vs-dark" // by default, TODO add option to modify this
+            theme={THEME[theme]} // by default, TODO add option to modify this
             onChange={handleChange}
             onMount={onMount}
             options={{

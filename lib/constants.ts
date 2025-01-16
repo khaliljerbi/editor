@@ -50,7 +50,8 @@ print("hello world !")`,
 
 import "fmt"
 
-fmt.Println("Hello world !")
+func main() {
+    fmt.Println("Hello, World!")
 }`,
   },
   rust: {
@@ -60,7 +61,8 @@ fmt.Println("Hello world !")
     pistonRuntime: { language: "rust", version: "1.68.2" },
     monacoLanguage: "rust",
     defaultCode: `// rust playground
-    println!("Hello world !");
+    fn main() {
+    println!("Hello, World!");
 }`,
   },
   csharp: {
@@ -69,11 +71,16 @@ fmt.Println("Hello world !")
     logoPath: "/csharp.png",
     pistonRuntime: { language: "csharp", version: "6.12.0" },
     monacoLanguage: "csharp",
-    defaultCode: `using System;
-using System.Linq;
+    defaultCode: `
+    using System;
 
- Console.WriteLine("Hello world !");
-       
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Hello, World!");
+    }
+}  
     
 `,
   },
